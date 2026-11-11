@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(SddmCustomChecks LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Test)
+add_library(greeter-capture SHARED greeter-capture.cpp)
+target_link_libraries(greeter-capture PRIVATE Qt6::Quick Qt6::Test)

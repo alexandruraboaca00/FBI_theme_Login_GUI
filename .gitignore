@@ -1,0 +1,11 @@
+/build/
+__pycache__/
+.pytest_cache/
+*.pyc
+/tests/results/
+/tests/screenshots/
+/src/theme/theme.conf.user
+/assets/reference/
+/.agents/
+/.codex/
+/.aws/

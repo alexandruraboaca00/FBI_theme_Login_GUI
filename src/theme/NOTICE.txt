@@ -1,0 +1,21 @@
+FBI_theme_Login_GUI
+
+Project code: BSD-3-Clause; see LICENSE.
+This license excludes third-party fonts, reference artwork and its screenshots.
+reference.jpg: unmodified image supplied by the user, originally Imagen.jpg.
+The project does not claim ownership or a redistribution license for this artwork.
+The emblem and warning are part of that supplied image, not newly invented marks.
+
+ShareTechMono-Regular.ttf: Share Tech Mono by Carrois Type Design.
+SIL Open Font License 1.1, full text in assets/OFL.txt.
+Source: https://github.com/google/fonts/tree/main/ofl/sharetechmono
+
+No KDE theme source files or KDE runtime components are bundled.
+
+WorldDots.js: derived from Natural Earth 1:110m land, public domain.
+https://www.naturalearthdata.com/about/terms-of-use/
+Source: https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_land.geojson
+Connections are decorative animation, not live security telemetry.
+
+WorldLand.js: Natural Earth land polygons, same public-domain source as WorldDots.js.
+The two new map presets are original QML renderings, not copied reference images.
