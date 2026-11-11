@@ -38,3 +38,15 @@ modo de prueba. No se publican inventarios del equipo ni respaldos de configurac
 
 MFA y cambio obligatorio de contraseña no están implementados. El tamaño lógico
 recomendado mínimo es 960×540. No se ha realizado un benchmark formal de FPS.
+
+
+## Integración continua
+
+[Checks](https://github.com/alexandruraboaca00/FBI_theme_Login_GUI/actions/workflows/ci.yml)
+ejecuta los 11 casos de instalación y las 4 rutas marítimas con Python 3.11 y 3.13
+en runners Linux de GitHub, sin modificar un SDDM real. Las acciones de checkout
+y setup-python están fijadas a commits de sus repositorios oficiales.
+Qt/QML, las capturas y la revisión visual permanecen como comprobaciones locales:
+el estado de esa CI no certifica autenticación PAM ni compatibilidad GPU.
+
+[Contribuir](../CONTRIBUTING.md) · [Índice documental](README.md)

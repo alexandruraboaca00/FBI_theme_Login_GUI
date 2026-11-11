@@ -1,0 +1,45 @@
+name: Informar de un fallo
+description: Un problema reproducible de interfaz, instalación o comportamiento.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Revisa primero docs/troubleshooting.md. No incluyas contraseñas ni archivos de autenticación.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Entorno
+      description: Distribución, SDDM, Qt, escritorio, servidor del greeter y sesión.
+      placeholder: "Arch Linux · SDDM … · Qt … · Plasma … · greeter X11 · sesión Wayland"
+    validations:
+      required: true
+  - type: dropdown
+    id: context
+    attributes:
+      label: Dónde ocurre
+      options:
+        - Vista previa test-mode
+        - Greeter real
+        - Instalación o restauración
+        - Otro
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Pasos para reproducir
+      description: Describe qué hiciste y qué ocurrió, incluyendo comandos si corresponde.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidencias opcionales
+      description: Capturas o mensajes relevantes, sin datos privados. Indica versión o commit del tema.

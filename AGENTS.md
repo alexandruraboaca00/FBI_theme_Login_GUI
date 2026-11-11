@@ -1,5 +1,6 @@
 # FBI_theme_Login_GUI — mantenimiento
 
+Las guías de uso están indexadas en docs/README.md; colaboración en CONTRIBUTING.md.
 El tema autocontenido está en src/theme. Lienzo lógico 1600×900, escalado uniforme.
 Los valores predeterminados son focos con barcos y reloj bajo el emblema.
 No modificar la imagen de referencia; su hash se documenta en docs/design.md.

@@ -78,3 +78,12 @@ La [matriz de validación](testing.md) documenta las pruebas locales y sus pendi
 La carga en test-mode, los dobles QML y los fotogramas capturados no prueban PAM,
 acciones físicas de energía, GPU real ni hotplug. La documentación no atribuye
 esas verificaciones a SDDM, Qt, KDE o Arch por el mero hecho de enlazarlos.
+
+
+## Integración continua
+
+El [workflow del proyecto](../.github/workflows/ci.yml) usa las acciones oficiales
+[checkout v7.0.1](https://github.com/actions/checkout/tree/3d3c42e5aac5ba805825da76410c181273ba90b1)
+y [setup-python v7.1.0](https://github.com/actions/setup-python/tree/6d4fd22b20465ccc0f7354476588e8df7c9ca0e0),
+fijadas a sus commits. El estado visible en la portada corresponde sólo a los
+tests Python descritos en [testing.md](testing.md), no a PAM o hardware gráfico.

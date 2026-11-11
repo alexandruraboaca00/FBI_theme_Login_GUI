@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="726" height="32" viewBox="0 0 726 32" role="img" aria-labelledby="title desc">
+  <title id="title">SDDM · Qt 6 · KDE Plasma 6 · Arch Linux · BSD-3-Clause</title>
+  <desc id="desc">Plataforma del tema y licencia de su código.</desc>
+  <g font-family="DejaVu Sans,Arial,sans-serif" font-size="12" text-anchor="middle">
+    <rect width="104" height="32" rx="5" fill="#12232f"/><path d="M5 1h94" stroke="#7cdfe5"/><text x="52" y="21" fill="#c5f6f8">SDDM</text>
+    <rect x="114" width="96" height="32" rx="5" fill="#172b25"/><path d="M119 1h86" stroke="#68c98b"/><text x="162" y="21" fill="#cbefcf">Qt 6 / QML</text>
+    <rect x="220" width="146" height="32" rx="5" fill="#18273b"/><path d="M225 1h136" stroke="#69a9ef"/><text x="293" y="21" fill="#d6e9ff">KDE Plasma 6</text>
+    <rect x="376" width="132" height="32" rx="5" fill="#172735"/><path d="M381 1h122" stroke="#58b7de"/><text x="442" y="21" fill="#cdeefa">Arch Linux</text>
+    <rect x="518" width="208" height="32" rx="5" fill="#2a2535"/><path d="M523 1h198" stroke="#b2a0df"/><text x="622" y="21" fill="#e9dffb">Código · BSD-3-Clause</text>
+  </g>
+</svg>
