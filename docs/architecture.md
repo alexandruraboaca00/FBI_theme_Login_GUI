@@ -55,14 +55,9 @@ sólo activa si se pide explícitamente --activate.
 
 ## Fuentes oficiales
 
-Contrato contrastado con SDDM v0.21.0, commit
-63780fcd79f1dbf81a30eef48c28c699ab15aded, y con el greeter instalado:
+Contratos de SDDM v0.21.0, Qt 6, contexto de KDE Plasma 6 y atribuciones:
+[índice de referencias con su alcance](references.md).
 
-- [GreeterProxy](https://github.com/sddm/sddm/blob/v0.21.0/src/greeter/GreeterProxy.h)
-- [GreeterApp y contextos](https://github.com/sddm/sddm/blob/v0.21.0/src/greeter/GreeterApp.cpp)
-- [SessionModel](https://github.com/sddm/sddm/blob/v0.21.0/src/greeter/SessionModel.cpp)
-- [KeyboardModel](https://github.com/sddm/sddm/blob/v0.21.0/src/greeter/KeyboardModel.h)
-- [ThemeConfig](https://github.com/sddm/sddm/blob/v0.21.0/src/common/ThemeConfig.cpp)
-- [Theming](https://github.com/sddm/sddm/blob/v0.21.0/docs/THEMING.md)
-- [ArchWiki SDDM](https://wiki.archlinux.org/title/SDDM)
-- [Qt Quick](https://doc.qt.io/qt-6/qtquick-index.html)
+La arquitectura y las comprobaciones propias no equivalen a compatibilidad
+certificada por esos proyectos. Para entorno probado y límites, consulta
+[dependencias](dependencies.md) y [validación](testing.md).

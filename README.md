@@ -1,8 +1,23 @@
 # FBI_theme_Login_GUI
 
-Tema de inicio de sesión para **SDDM y Qt 6**, con estética de terminal CRT,
-mapa mundial animado, focos de actividad simulada y barcos sobre rutas oceánicas.
-Diseñado para Arch Linux y KDE Plasma, con greeter X11 y sesiones Wayland o X11.
+**Tema de inicio de sesión para SDDM · Qt 6 / QML · KDE Plasma 6 · Arch Linux**
+
+Personaliza el **greeter de [SDDM (Simple Desktop Display Manager)](https://github.com/sddm/sddm)**,
+la pantalla donde eliges usuario y sesión antes de entrar al escritorio. Está
+orientado a **KDE Plasma 6 sobre Arch Linux** y construido con **Qt 6 / Qt Quick**.
+Incluye estética CRT, mapa mundial animado, focos simulados y barcos oceánicos.
+
+**Alcance:** no es un tema global de Plasma, una aplicación de escritorio ni una
+pantalla de bloqueo. Sólo se aplica si el gestor de acceso activo es SDDM y dispone
+del greeter Qt 6. No sirve para GDM, LightDM ni Plasma Login Manager.
+
+- [Compatibilidad y entorno](#compatibilidad-y-entorno)
+- [Descargar y probar](#descargar-y-probar)
+- [Instalar y activar](#instalar-y-activar)
+- [Configurar](#configurar)
+- [Recuperación desde TTY](#recuperación-desde-tty)
+- [Preguntas frecuentes](#preguntas-frecuentes)
+- [Referencias oficiales y atribuciones](docs/references.md)
 
 ![Vista del tema](src/theme/preview.png)
 
@@ -22,20 +37,67 @@ Diseñado para Arch Linux y KDE Plasma, con greeter X11 y sesiones Wayland o X11
 Las rutas, focos y barcos son **decorativos y funcionan offline**. No muestran
 ataques reales, tráfico AIS ni información de tu red.
 
+## Compatibilidad y entorno
+
+| Componente | Entorno comprobado / alcance |
+|---|---|
+| Distribución | Arch Linux; scripts de dependencias e instalación orientados a Arch |
+| Escritorio | **KDE Plasma 6.8.2** instalado durante desarrollo |
+| Gestor de acceso | **SDDM 0.21.0-7**, seleccionado como display manager |
+| Motor del tema | **Qt 6.12.0**, QML / Qt Quick Controls Basic |
+| Greeter | Configurado en **X11**; las capturas y pruebas se ejecutan en offscreen/software |
+| Sesión de usuario | **Plasma Wayland**, detectada por el modelo de sesiones de SDDM |
+| Sesiones X11 | Selector implementado y probado con dobles; no había sesión X11 instalada en el equipo de prueba |
+| Qt mínimo declarado | 6.5; sólo 6.12 está probado, sin garantía para cada versión intermedia |
+| Qt 5 / Plasma 5 | Fuera del objetivo de soporte; no se ofrece una variante Qt 5 |
+| Otros escritorios o distribuciones | Posibles con SDDM Qt 6, pero no verificados; scripts y nombres de paquetes pueden requerir adaptación |
+
+**KDE Plasma 6 es el escritorio; Qt 6 es el framework que dibuja el tema; SDDM es
+el gestor que lo carga.** Plasma 6 y Qt 6 tienen numeraciones independientes.
+El tema no importa bibliotecas KDE: sus dependencias directas son QtQuick,
+QtQuick.Window y QtQuick.Controls.Basic. La fuente está incluida.
+
+El greeter puede usar X11 y abrir después una sesión Wayland: son configuraciones
+separadas de SDDM. Este proyecto no cambia ninguna de ellas. Los modelos y la API
+están contrastados con [SDDM v0.21.0](docs/references.md#sddm-contrato-versionado).
+La arquitectura de Plasma 6 se contextualiza en el
+[anuncio oficial de KDE](https://kde.org/announcements/megarelease/6/).
+
+La carga del tema, las interacciones de prueba y la instalación **no equivalen a
+un inicio de sesión PAM real validado**. Los límites exactos están en
+[docs/testing.md](docs/testing.md).
+
 ## Requisitos
 
-Validado con SDDM 0.21.0, Qt 6.12 y Plasma 6.8 sobre Arch Linux. El código requiere
-Qt ≥6.5. Imports: QtQuick, QtQuick.Window y QtQuick.Controls.Basic.
-La fuente está incluida; no requiere Kirigami, componentes KDE ni Qt5Compat.
+**Ejecución:** SDDM con `sddm-greeter-qt6`, Qt 6 y una sesión de escritorio instalada.
+**Scripts:** Bash, Python 3 y `pacman` en Arch. No requieren herramientas de
+compilación para instalar o abrir la vista previa.
 
 ```bash
-sudo pacman -S --needed sddm qt6-base qt6-declarative
+sudo pacman -S --needed sddm qt6-base qt6-declarative python
 ```
 
 El instalador no instala paquetes. El script de activación exige que **elarun y
 Breeze estén disponibles** como alternativas de recuperación. Breeze suele estar
 incluido con Plasma; comprueba `/usr/share/sddm/themes/` antes de activar.
 El tema no configura SDDM como gestor activo ni cambia el servidor gráfico.
+
+Antes de instalar, estas comprobaciones son de sólo lectura:
+
+```bash
+pacman -Q sddm qt6-base qt6-declarative plasma-workspace
+command -v sddm-greeter-qt6
+readlink -f /etc/systemd/system/display-manager.service
+ls /usr/share/sddm/themes/
+```
+
+El enlace del gestor activo debe apuntar a `sddm.service`. Tener KDE Plasma 6
+instalado no garantiza por sí solo que SDDM sea el gestor activo. Si usas otro,
+esta guía no lo sustituye ni lo habilita automáticamente. `plasma-workspace`
+identifica el entorno de prueba; no es un import requerido por el tema.
+El campo [`QtVersion=6`](src/theme/metadata.desktop) identifica la variante Qt del
+tema; el ejecutable correspondiente debe existir. Véase
+[la selección del greeter en SDDM](https://github.com/sddm/sddm/blob/v0.21.0/src/daemon/Greeter.cpp#L83-L102).
 
 ## Descargar y probar
 
@@ -80,8 +142,10 @@ sudo ./scripts/activate.sh --apply
 
 El identificador instalable `federal-intelligence` se conserva para facilitar
 compatibilidad y restauraciones; el repositorio se llama FBI_theme_Login_GUI.
-`/etc/sddm.conf` tiene prioridad sobre los archivos de `sddm.conf.d`, por eso no
-se añade un drop-in que pudiera quedar ignorado.
+El [manual oficial de configuración de SDDM](https://github.com/sddm/sddm/blob/v0.21.0/data/man/sddm.conf.rst.in)
+establece el orden de carga. En el destino Arch de estos scripts:
+`/usr/lib/sddm/sddm.conf.d/` → `/etc/sddm.conf.d/` → `/etc/sddm.conf`, con mayor
+prioridad al final. Por eso no se añade un drop-in que pudiera quedar ignorado.
 
 La activación crea automáticamente una copia de la configuración previa.
 También puedes generar una copia independiente con `sudo ./scripts/backup.sh --apply`.
@@ -186,6 +250,42 @@ implementados. El monitor principal se decide al crear las vistas de SDDM 0.21.
 
 Consulta [arquitectura](docs/architecture.md), [diseño](docs/design.md),
 [dependencias](docs/dependencies.md) y [validación](docs/testing.md).
+
+## Preguntas frecuentes
+
+**¿Se aplica desde un tema global de KDE Plasma 6?**
+
+No: se instala en el directorio de temas de SDDM. Cambia la pantalla de acceso,
+no el escritorio, las ventanas, los iconos ni el bloqueo de Plasma.
+
+**¿Funciona sólo por tener KDE Plasma 6 instalado?**
+
+Necesita SDDM activo y su greeter Qt 6. No requiere imports KDE; otros escritorios
+con ese runtime podrían funcionar, pero no se han validado.
+
+**¿Puedo usar Plasma Wayland aunque el greeter sea X11?**
+
+Sí: el selector usa las sesiones que proporciona SDDM. La configuración comprobada
+combina greeter X11 y una sesión Plasma Wayland detectada. No se cambia el servidor
+del greeter ni se presupone que esa detección pruebe la autenticación real.
+
+**¿Por qué la vista previa no recuerda mi usuario o se queda autenticando?**
+
+Se ejecuta en test-mode con tu usuario normal y sin un daemon conectado. No es la
+misma ejecución que el greeter de acceso. El tema real toma `userModel.lastUser`;
+la contraseña nunca viene predefinida. No introduzcas credenciales reales en test-mode.
+
+**¿El mapa muestra hackeos o barcos reales?**
+
+No: las animaciones son decorativas, locales y sin red.
+
+## Referencias y atribuciones
+
+La documentación del contrato usa la versión **SDDM v0.21.0**, no ejemplos de
+Qt 5 copiados de la wiki. Consulta el
+[índice de fuentes con su alcance](docs/references.md): SDDM, Qt, KDE, ArchWiki,
+Natural Earth y Share Tech Mono. Los enlaces de código están fijados a versión
+cuando corresponde y las pruebas propias se identifican por separado.
 
 ## Licencias y recursos
 
